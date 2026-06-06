@@ -235,12 +235,6 @@ Google OAuth · Calendar
 
 ### AI 추천 파이프라인
 
-<div align="center">
-<img src="docs/images/ai_engine_structure.png" alt="ScholarFit 검색형 AI 엔진 구조 — 장학 공고 수집부터 Google Calendar 단계로 실행까지" width="100%"/>
-</div>
-
-<br>
-
 ```
 📥 수집          🔄 구조화         ⚙️ 판정           💬 설명          🚀 행동
 ━━━━━━━━━━━    ━━━━━━━━━━━━    ━━━━━━━━━━━━    ━━━━━━━━━━━    ━━━━━━━━━━━━
