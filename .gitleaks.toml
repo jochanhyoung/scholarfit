@@ -1,0 +1,7 @@
+[extend]
+useDefault = true
+
+[[rules]]
+description = "Supabase keys"
+regex = '''eyJ[A-Za-z0-9_-]{20,}'''
+tags = ["supabase", "jwt"]

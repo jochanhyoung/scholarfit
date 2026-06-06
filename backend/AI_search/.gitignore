@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+src/.env
+src/.env.*
+__pycache__/
+*.pyc
+*.pyo
+*.npy
+active_scholarship_data.json

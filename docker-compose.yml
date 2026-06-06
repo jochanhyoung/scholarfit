@@ -1,0 +1,56 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_AI_SEARCH_URL=${VITE_AI_SEARCH_URL}
+    env_file:
+      - ./frontend/.env
+    image: frontend:latest
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - shared-network
+
+  kosaf-collector:
+    build: ./backend/KOSAF_api
+    image: kosaf-collector:latest
+    container_name: kosaf-collector
+    env_file:
+      - ./backend/KOSAF_api/.env
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - PYTHONUNBUFFERED=1       # 출력을 버퍼에 모아두지 말고 바로 출력 | log 보기 편함
+    restart: always
+    networks:
+      - shared-network
+
+  ai-search:
+    build: ./backend/AI_search
+    image: ai-search:latest
+    container_name: ai-search
+    env_file:
+      - ./backend/AI_search/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - /data2/devuser/repo/app/backend/AI_search/data:/app/data
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    external: true
+    name: shared-network
+    driver: bridge

@@ -1,0 +1,24 @@
+**/.env
+**/.env.*
+!**/.env.example
+supabase/apps/studio/.env
+supabase/apps/studio/.env.*
+*.old
+*.bak
+
+
+# Supabase Local Development
+supabase/.temp/
+supabase/.branches/
+supabase/functions/**/.env
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Docker volume data (만약 로컬에 db 데이터가 생성된다면)
+supabase/docker/volumes/
+node_modules/
+supabase/apps/
+supabase/examples/
